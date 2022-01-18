@@ -1,9 +1,13 @@
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,8 +18,10 @@ public class FileTest_3 {
 
     @Test
     public void TestDirectoryList() {
+        System.out.println(PropertiesCache.getInstance().getProperty("filepath"));
         try {
-            Set<String> results = listFilesUsingFileWalk("E:\\AZ-500\\Exercises\\01\\Configure-Security-Policies-main", 2);
+            String filePath = PropertiesCache.getInstance().getProperty("filepath");
+            Set<String> results = listFilesUsingFileWalk(filePath, 1);
             results.stream().forEach(System.out::println);
             for (String result:results) {
                 System.out.println(result.replaceAll("^.*?(?=[^1])/", ""));
